@@ -7,7 +7,7 @@ setwd(masstools::get_project_wd())
 library(tidyverse)
 library(tidymass)
 
-setwd("data_analysis/data_preparation/combination/metabolites/")
+setwd("3_data_analysis/1_data_preparation/combination/metabolites/")
 
 load("object")
 

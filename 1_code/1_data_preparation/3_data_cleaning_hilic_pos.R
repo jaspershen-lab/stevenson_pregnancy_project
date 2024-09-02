@@ -5,9 +5,9 @@ setwd(masstools::get_project_wd())
 
 rm(list = ls())
 
-source("code/tools.R")
+source("1_code/100_tools.R")
 
-setwd("data_analysis/data_preparation/hilic_pos/")
+setwd("3_data_analysis/1_data_preparation/hilic_pos/")
 
 load("object")
 

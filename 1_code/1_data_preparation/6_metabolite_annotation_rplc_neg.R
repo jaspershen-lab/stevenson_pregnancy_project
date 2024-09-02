@@ -5,10 +5,10 @@ setwd(masstools::get_project_wd())
 
 rm(list = ls())
 
-source("code/tools.R")
+source("1_code/100_tools.R")
 
-dir.create("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
-setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
+dir.create("3_data_analysis/1_data_preparation/rplc_neg/metabolite_annotation")
+setwd("3_data_analysis/1_data_preparation/rplc_neg/metabolite_annotation")
 # load("../object2")
 #
 # #####mutate MS2 data into the object
@@ -16,7 +16,7 @@ setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
 #   mutate_ms2(
 #     object = object2,
 #     column = "rp",
-#     polarity = "positive",
+#     polarity = "negative",
 #     path = "."
 #   )
 #
@@ -25,7 +25,7 @@ setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
 # object2 <-
 #   annotate_metabolites_mass_dataset(
 #     object = object2,
-#     polarity = "positive",
+#     polarity = "negative",
 #     column = "rp",
 #     database = mpsnyder_rplc_ms2,
 #     threads = 4
@@ -35,7 +35,7 @@ setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
 # object2 <-
 #   annotate_metabolites_mass_dataset(
 #     object = object2,
-#     polarity = "positive",
+#     polarity = "negative",
 #     column = "rp",
 #     database = metlin_ms2,
 #     threads = 4
@@ -45,7 +45,7 @@ setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
 # object2 <-
 #   annotate_metabolites_mass_dataset(
 #     object = object2,
-#     polarity = "positive",
+#     polarity = "negative",
 #     column = "rp",
 #     database = hmdb_ms2,
 #     threads = 4
@@ -55,7 +55,7 @@ setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
 # object2 <-
 #   annotate_metabolites_mass_dataset(
 #     object = object2,
-#     polarity = "positive",
+#     polarity = "negative",
 #     column = "rp",
 #     database = massbank_ms2,
 #     threads = 4
@@ -66,7 +66,7 @@ setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
 # object2 <-
 #   annotate_metabolites_mass_dataset(
 #     object = object2,
-#     polarity = "positive",
+#     polarity = "negative",
 #     column = "rp",
 #     database = mona_ms2,
 #     threads = 4
@@ -76,7 +76,7 @@ setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
 # object2 <-
 #   annotate_metabolites_mass_dataset(
 #     object = object2,
-#     polarity = "positive",
+#     polarity = "negative",
 #     column = "rp",
 #     database = nist_ms2,
 #     threads = 4
@@ -85,6 +85,11 @@ setwd("data_analysis/data_preparation/rplc_pos/metabolite_annotation")
 # object3 <- object2
 #
 # save(object3, file = "object3")
+#
+#
+#
+#
+#
 
 
 load("object3")
@@ -146,10 +151,17 @@ for (i in seq_len(nrow(annotation_table))) {
   seq_along(plot) %>%
     purrr::map(function(i) {
       x <- plot[[i]]
-      ggsave(plot = x, filename = file.path("ms2_rplc_pos", paste0(names(plot)[i], 
-                                                             "_",
-                                                             annotation_table$Lab.ID[i],".pdf")),
-             width = 9, height = 7)
+      ggsave(
+        plot = x,
+        filename = file.path(
+          "ms2_rplc_pos",
+          paste0(names(plot)[i],
+                 "_",
+                 annotation_table$Lab.ID[i], ".pdf")
+        ),
+        width = 9,
+        height = 7
+      )
     })
   
 }

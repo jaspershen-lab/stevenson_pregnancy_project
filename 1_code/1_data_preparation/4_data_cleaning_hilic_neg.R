@@ -5,25 +5,25 @@ setwd(masstools::get_project_wd())
 
 rm(list = ls())
 
-source("code/tools.R")
+source("1_code/100_tools.R")
 
-setwd("data_analysis/data_preparation/rplc_neg/")
+setwd("3_data_analysis/1_data_preparation/hilic_neg/")
 
 load("object")
 
 dim(object)
 
 sample_list <-
-  readxl::read_xlsx("Stevenson Final List_nRPLC.xlsx",
+  readxl::read_xlsx("Stevenson Final List_nHILIC.xlsx",
                     sheet = 1,
                     col_types = "text")
 
 sample_list <-
   sample_list %>%
-  dplyr::select("Sample number", "Prep Batch", "Acq Batch", "Injection Order") %>%
+  dplyr::select("Sample number", "Prep Batch", "Acquisition Batch", "Injection Order") %>%
   dplyr::rename(sample_id = "Sample number",
                 preparation_batch = "Prep Batch",
-                acquisition_batch = "Acq Batch",
+                acquisition_batch = "Acquisition Batch",
                 injection.order = "Injection Order") %>%
   dplyr::mutate(batch = 1) %>%
   dplyr::mutate(batch = as.numeric(batch),
@@ -31,11 +31,16 @@ sample_list <-
 
 sample_list2 <-
   sample_list %>%
-  dplyr::mutate(sample_id = paste0(sample_id, "_wb"))
+  dplyr::mutate(sample_id = paste0(sample_id, "_WB"))
+
+sample_list3 <-
+  sample_list %>%
+  dplyr::mutate(sample_id = paste0(sample_id, "_reinj"))
 
 sample_list <-
   rbind(sample_list,
-        sample_list2)
+        sample_list2,
+        sample_list3)
 
 object <-
 object %>% 

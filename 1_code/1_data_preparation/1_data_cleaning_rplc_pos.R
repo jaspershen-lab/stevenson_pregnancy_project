@@ -4,9 +4,9 @@ setwd(masstools::get_project_wd())
 
 rm(list = ls())
 
-source("code/tools.R")
+source("1_code/100_tools.R")
 
-setwd("data_analysis/data_preparation/rplc_pos/")
+setwd("3_data_analysis/1_data_preparation/rplc_pos/")
 
 load("object")
 
@@ -19,7 +19,7 @@ sample_list <-
 
 sample_list <-
   sample_list %>%
-  dplyr::select("Sample number", "`Prep Batch`","Acq Batch", "Injection Order") %>%
+  dplyr::select("Sample number", "Prep Batch","Acq Batch", "Injection Order") %>%
   dplyr::rename(sample_id = "Sample number",
                 batch = "Acq Batch",
                 injection.order = "Injection Order")

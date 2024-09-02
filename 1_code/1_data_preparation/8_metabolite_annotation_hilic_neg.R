@@ -5,10 +5,10 @@ setwd(masstools::get_project_wd())
 
 rm(list = ls())
 
-source("code/tools.R")
+source("1_code/100_tools.R")
 
-dir.create("data_analysis/data_preparation/hilic_neg/metabolite_annotation")
-setwd("data_analysis/data_preparation/hilic_neg/metabolite_annotation")
+dir.create("3_data_analysis/1_data_preparation/hilic_neg/metabolite_annotation")
+setwd("3_data_analysis/1_data_preparation/hilic_neg/metabolite_annotation")
 # load("../object2")
 # 
 # #####mutate MS2 data into the object
